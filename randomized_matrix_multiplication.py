@@ -49,7 +49,7 @@ def randomized_multiply(mat_A, mat_B, samples):
     cols = mat_B.shape[1] if mat_B.ndim != 1 else mat_B.shape[0]
     res = np.zeros((rows, cols))
 
-    for k in range(samples):
+    for _ in range(samples):
         i = sample_column_index(cum_prob)
         sample = get_column(mat_A, i).dot(get_row(mat_B, i)) / prob[i]
         res = np.add(res, sample)
