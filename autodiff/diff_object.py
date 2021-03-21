@@ -25,7 +25,8 @@ class DiffObject:
         return self.__add__(-other)
 
     def __rsub__(self, other):
-        return self.__sub__(other)
+        other = self.promote_rule(other)
+        return other.__sub__(self)
 
     def __pos__(self):
         return self.__rmul__(1)
