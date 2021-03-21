@@ -8,3 +8,4 @@ Collection of codes without any category.
 
 - **Autodiff**
   - Simple implementation of `DiffObject` that handles function evaluation and differentiation automatically
+  - Blog post link: https://calofmijuck.tistory.com/28
