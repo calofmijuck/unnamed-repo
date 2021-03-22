@@ -12,6 +12,8 @@ import Base: +, -, *, /, ^, sin, cos, tan, exp, log, convert, promote_rule
 
 -(x::DiffObject, y::DiffObject) = DiffObject(x.f - y.f, x.df - y.df)
 
+-(x::DiffObject) = DiffObject(-x.f, -x.df)
+
 *(x::DiffObject, y::DiffObject) = DiffObject(x.f * y.f, x.df * y.f + x.f * y.df)
 
 /(x::DiffObject, y::DiffObject) = DiffObject(x.f / y.f, (x.df * y.f - x.f * y.df) / y.f^2)
@@ -31,17 +33,3 @@ log(x::DiffObject) = DiffObject(log(x.f), x.df / x.f)
 convert(::Type{DiffObject}, x::Real) = DiffObject(x, zero(x))
 
 promote_rule(::Type{DiffObject}, ::Type{<:Number}) = DiffObject
-
-x = 49
-
-function f(x, y)
-    x * y
-end
-
-f(DiffObject((3, 1)), 1)
-
-f(DiffObject((3, 1)), 2)
-
-f(1, DiffObject((3, 1)))
-
-f(DiffObject((2, 1)), DiffObject((3, 1)))
